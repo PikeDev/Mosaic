@@ -11,6 +11,9 @@
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <DevelopmentDependency>true</DevelopmentDependency>
     <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+    <!-- Symbol packages are PDBs from the build output; with IncludeBuildOutput=false there is
+         nothing to ship in a .snupkg, and pack fails with NU5017. Override the repo-wide default. -->
+    <IncludeSymbols>false</IncludeSymbols>
     <NoWarn>$(NoWarn);NU5128;RS1041</NoWarn>
     <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
     <AnalyzerLanguage>cs</AnalyzerLanguage>
