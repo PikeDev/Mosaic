@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>Mosaic.SourceGenerator.Tests</RootNamespace>
+    <AssemblyName>Mosaic.SourceGenerator.Tests</AssemblyName>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Direct project reference (NOT as analyzer) so we can drive the generator from tests -->
+    <ProjectReference Include="..\..\src\Mosaic.SourceGenerator\Mosaic.SourceGenerator.csproj" />
+    <ProjectReference Include="..\..\src\Mosaic.Abstractions\Mosaic.Abstractions.csproj" />
+    <!-- Saga test fixtures reference Saga&lt;T&gt;, IStartedBy, IHandles, [Correlation], [During],
+         and a DbContext type — pull both in so the test compilation resolves them. -->
+    <ProjectReference Include="..\..\src\Mosaic.Sagas\Mosaic.Sagas.csproj" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" />
+    <PackageReference Include="Verify.Xunit" />
+    <PackageReference Include="Verify.SourceGenerators" />
+    <PackageReference Include="Shouldly" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,35 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Mosaic.Abstractions/Mosaic.Abstractions.csproj" />
+    <Project Path="src/Mosaic.Runtime/Mosaic.Runtime.csproj" />
+    <Project Path="src/Mosaic.Sagas/Mosaic.Sagas.csproj" />
+    <Project Path="src/Mosaic.Sagas.EFCore/Mosaic.Sagas.EFCore.csproj" />
+    <Project Path="src/Mosaic.SourceGenerator/Mosaic.SourceGenerator.csproj" />
+    <Project Path="src/Mosaic.Transport.InMemory/Mosaic.Transport.InMemory.csproj" />
+    <Project Path="src/Mosaic.Transport.Postgres/Mosaic.Transport.Postgres.csproj" />
+    <Project Path="src/Mosaic.Outbox.Postgres/Mosaic.Outbox.Postgres.csproj" />
+    <Project Path="src/Mosaic.Outbox.EFCore/Mosaic.Outbox.EFCore.csproj" />
+    <Project Path="src/Mosaic.Serialization.MemoryPack/Mosaic.Serialization.MemoryPack.csproj" />
+    <Project Path="src/Mosaic.Testing/Mosaic.Testing.csproj" />
+    <Project Path="src/Mosaic/Mosaic.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Mosaic.SourceGenerator.Tests/Mosaic.SourceGenerator.Tests.csproj" />
+    <Project Path="tests/Mosaic.Tests/Mosaic.Tests.csproj" />
+  </Folder>
+  <Folder Name="/samples/decomposed-webshop/">
+    <Project Path="samples/decomposed-webshop/Mosaic.Sample.Composition/Mosaic.Sample.Composition.csproj" />
+    <Project Path="samples/decomposed-webshop/Mosaic.Sample.Sales/Mosaic.Sample.Sales.csproj" />
+    <Project Path="samples/decomposed-webshop/Mosaic.Sample.Catalog/Mosaic.Sample.Catalog.csproj" />
+    <Project Path="samples/decomposed-webshop/Mosaic.Sample.Pricing/Mosaic.Sample.Pricing.csproj" />
+    <Project Path="samples/decomposed-webshop/Mosaic.Sample.Inventory/Mosaic.Sample.Inventory.csproj" />
+    <Project Path="samples/decomposed-webshop/Mosaic.Sample.Marketing/Mosaic.Sample.Marketing.csproj" />
+    <Project Path="samples/decomposed-webshop/Mosaic.Sample.Host/Mosaic.Sample.Host.csproj" />
+  </Folder>
+  <Folder Name="/samples/saga-timeout/">
+    <Project Path="samples/saga-timeout/Mosaic.Sample.SagaTimeout.csproj" />
+  </Folder>
+  <Folder Name="/samples/audit-trail/">
+    <Project Path="samples/audit-trail/Mosaic.Sample.AuditTrail.csproj" />
+  </Folder>
+</Solution>

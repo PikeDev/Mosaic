@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;net10.0</TargetFrameworks>
+    <RootNamespace>Mosaic.Serialization.MemoryPack</RootNamespace>
+    <AssemblyName>Mosaic.Serialization.MemoryPack</AssemblyName>
+    <Description>Mosaic — MemoryPack adapter. Plug-in IMosaicSerializerRegistry that uses Cysharp.MemoryPack for binary serialisation. Mark your event types [MemoryPackable] partial and register the registry before AddMosaic.</Description>
+    <IsPackable>true</IsPackable>
+    <!--
+      Not marked IsAotCompatible: MemoryPack's Deserialize<T> annotates T with
+      DynamicallyAccessedMembers.All for its reflection fallback, and IMosaicSerializer<T>
+      can't forward that annotation through. The source-generated path (types declared
+      [MemoryPackable] partial) is fully AOT-safe in practice — consumers that need AOT
+      should rely on MemoryPack's own analyzer to enforce the partial declaration.
+    -->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MemoryPack" />
+    <ProjectReference Include="..\Mosaic.Abstractions\Mosaic.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

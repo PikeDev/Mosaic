@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>Mosaic.Sample.Composition</RootNamespace>
+    <AssemblyName>Mosaic.Sample.Composition</AssemblyName>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Mosaic.Abstractions\Mosaic.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

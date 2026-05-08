@@ -1,0 +1,82 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+# Don't cancel an in-progress release if another tag pushes — partial pushes are worse than waiting.
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      # contents: write is needed by softprops/action-gh-release to create the GitHub Release on the tag.
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # Full history so SourceLink embeds the right commit hash in shipped packages.
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Derive version from tag
+        id: version
+        # Tag 'v1.0.0-rc.2' → version '1.0.0-rc.2'. /p:Version=… below overrides the
+        # VersionPrefix+VersionSuffix in Directory.Build.props, so cutting a release is just:
+        #   git tag v1.2.3 && git push --tags.
+        run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --configuration Release --no-restore /p:Version=${{ steps.version.outputs.version }}
+
+      - name: Test
+        run: dotnet test --configuration Release --no-build --verbosity normal
+
+      - name: Pack
+        run: dotnet pack --configuration Release --no-build -o ./artifacts /p:Version=${{ steps.version.outputs.version }}
+
+      - name: Push to NuGet
+        # *.nupkg picks up matching *.snupkg in the same folder automatically — no separate push step.
+        # --skip-duplicate makes a re-run of the same tag (after a transient nuget.org failure) safe.
+        run: >
+          dotnet nuget push './artifacts/*.nupkg'
+          --api-key ${{ secrets.NUGET_API_KEY }}
+          --source https://api.nuget.org/v3/index.json
+          --skip-duplicate
+
+      - name: Extract release notes from CHANGELOG.md
+        # Pulls the body of the matching '## [VERSION] - …' section into release-notes.md so the
+        # GitHub Release shows the curated notes. If no matching section exists the file is empty;
+        # the release step below still creates the release using only GitHub's auto-generated notes.
+        run: |
+          version="${{ steps.version.outputs.version }}"
+          awk -v v="$version" '
+            $0 ~ "^## \\["v"\\]" { in_section=1; next }
+            in_section && /^## \[/ { exit }
+            in_section { print }
+          ' CHANGELOG.md > release-notes.md
+          echo "----- release notes for $version -----"
+          cat release-notes.md
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          # Curated CHANGELOG section first (may be empty), then GitHub appends auto notes from PRs.
+          body_path: release-notes.md
+          generate_release_notes: true
+          # Prerelease iff the SemVer has a hyphen suffix (rc, beta, alpha, etc.).
+          prerelease: ${{ contains(steps.version.outputs.version, '-') }}
+          files: |
+            ./artifacts/*.nupkg
+            ./artifacts/*.snupkg

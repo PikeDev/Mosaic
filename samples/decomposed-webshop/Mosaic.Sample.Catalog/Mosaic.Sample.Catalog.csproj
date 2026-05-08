@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>Mosaic.Sample.Catalog</RootNamespace>
+    <AssemblyName>Mosaic.Sample.Catalog</AssemblyName>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Mosaic.Abstractions\Mosaic.Abstractions.csproj" />
+    <ProjectReference Include="..\Mosaic.Sample.Composition\Mosaic.Sample.Composition.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;net10.0</TargetFrameworks>
+    <RootNamespace>Mosaic.Transport.InMemory</RootNamespace>
+    <AssemblyName>Mosaic.Transport.InMemory</AssemblyName>
+    <Description>Mosaic — in-memory IEventTransport. Two or more DI containers in the same process share a static channel, so events published in one container are delivered to subscribers in the others. Built for integration tests that want to exercise cross-process semantics without spinning up Postgres or Docker.</Description>
+    <IsPackable>true</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+    <ProjectReference Include="..\Mosaic.Abstractions\Mosaic.Abstractions.csproj" />
+    <ProjectReference Include="..\Mosaic.Runtime\Mosaic.Runtime.csproj" />
+  </ItemGroup>
+
+</Project>

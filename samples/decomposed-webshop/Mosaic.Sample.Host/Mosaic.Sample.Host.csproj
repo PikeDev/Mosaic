@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>Mosaic.Sample.Host</RootNamespace>
+    <AssemblyName>Mosaic.Sample.Host</AssemblyName>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Mosaic.Sample.Composition\Mosaic.Sample.Composition.csproj" />
+    <ProjectReference Include="..\Mosaic.Sample.Sales\Mosaic.Sample.Sales.csproj" />
+    <ProjectReference Include="..\Mosaic.Sample.Catalog\Mosaic.Sample.Catalog.csproj" />
+    <ProjectReference Include="..\Mosaic.Sample.Pricing\Mosaic.Sample.Pricing.csproj" />
+    <ProjectReference Include="..\Mosaic.Sample.Inventory\Mosaic.Sample.Inventory.csproj" />
+    <ProjectReference Include="..\Mosaic.Sample.Marketing\Mosaic.Sample.Marketing.csproj" />
+    <ProjectReference Include="..\..\..\src\Mosaic.Runtime\Mosaic.Runtime.csproj" />
+    <!-- The source generator runs in this composition root, discovers handlers in the
+         transitively-referenced service assemblies, and emits the dispatch engine here. -->
+    <ProjectReference Include="..\..\..\src\Mosaic.SourceGenerator\Mosaic.SourceGenerator.csproj"
+                      OutputItemType="Analyzer"
+                      ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+  </ItemGroup>
+
+</Project>

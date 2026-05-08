@@ -1,0 +1,10 @@
+<Project>
+
+  <!--
+    Mosaic — package targets.
+    Currently a placeholder; future use: enforce that Mosaic.SourceGenerator is referenced
+    with PrivateAssets="all" and warn when consumers install it in non-composition-root
+    projects (causes duplicate generated types).
+  -->
+
+</Project>

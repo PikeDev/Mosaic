@@ -1,0 +1,16 @@
+﻿{
+  Diagnostics: [
+    {
+      Message: IRequest<int> 'global::Sample.Q' has 2 handlers; exactly one is required. Handlers: global::Sample.A, global::Sample.B.,
+      Severity: Error,
+      Descriptor: {
+        Id: MOSAIC0002,
+        Title: Request has multiple handlers,
+        MessageFormat: IRequest<{0}> '{1}' has {2} handlers; exactly one is required. Handlers: {3}.,
+        Category: Mosaic,
+        DefaultSeverity: Error,
+        IsEnabledByDefault: true
+      }
+    }
+  ]
+}

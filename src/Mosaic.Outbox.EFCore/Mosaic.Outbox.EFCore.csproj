@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>Mosaic.Outbox.EFCore</RootNamespace>
+    <AssemblyName>Mosaic.Outbox.EFCore</AssemblyName>
+    <Description>Mosaic — atomic outbox via EF Core. ICompositionContext.Publish stages MosaicOutboxEntry rows directly into the consumer's DbContext change tracker so the next SaveChangesAsync commits them in the same transaction as state changes. Ships a relay hosted service that polls the table and ships rows via the configured underlying transport.</Description>
+    <IsPackable>true</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+    <ProjectReference Include="..\Mosaic.Abstractions\Mosaic.Abstractions.csproj" />
+    <ProjectReference Include="..\Mosaic.Runtime\Mosaic.Runtime.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>Mosaic.Tests</RootNamespace>
+    <AssemblyName>Mosaic.Tests</AssemblyName>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Mosaic.Abstractions\Mosaic.Abstractions.csproj" />
+    <ProjectReference Include="..\..\src\Mosaic.Runtime\Mosaic.Runtime.csproj" />
+    <ProjectReference Include="..\..\src\Mosaic.Transport.InMemory\Mosaic.Transport.InMemory.csproj" />
+    <ProjectReference Include="..\..\src\Mosaic.Serialization.MemoryPack\Mosaic.Serialization.MemoryPack.csproj" />
+    <ProjectReference Include="..\..\src\Mosaic.Testing\Mosaic.Testing.csproj" />
+    <ProjectReference Include="..\..\src\Mosaic.SourceGenerator\Mosaic.SourceGenerator.csproj"
+                      OutputItemType="Analyzer"
+                      ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio" />
+    <PackageReference Include="Shouldly" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+  </ItemGroup>
+
+</Project>

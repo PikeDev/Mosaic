@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;net10.0</TargetFrameworks>
+    <RootNamespace>Mosaic</RootNamespace>
+    <AssemblyName>Mosaic</AssemblyName>
+    <Description>Mosaic — typed, source-generated composition + mediator framework for .NET. This meta package pulls in Abstractions, Runtime, and the source generator (configured as a build-time analyzer).</Description>
+    <IsPackable>true</IsPackable>
+
+    <!-- Meta package: no compiled output, only a build/ folder driving the package layout -->
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Mosaic.Abstractions\Mosaic.Abstractions.csproj" />
+    <ProjectReference Include="..\Mosaic.Runtime\Mosaic.Runtime.csproj" />
+    <!-- Build dependency only: ensure the source generator is built before this meta package
+         is packed (so the .dll exists for the <None Pack="true"/> below). We deliberately do NOT
+         use OutputItemType="Analyzer" — that would run the generator against this meta package's
+         own (empty) compilation and emit useless empty-switch code. -->
+    <ProjectReference Include="..\Mosaic.SourceGenerator\Mosaic.SourceGenerator.csproj"
+                      ReferenceOutputAssembly="false"
+                      SkipGetTargetFrameworkProperties="true"
+                      UndefineProperties="TargetFramework"
+                      PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Pack the source generator assembly into analyzers/ for the Mosaic package itself -->
+    <None Include="..\Mosaic.SourceGenerator\bin\$(Configuration)\netstandard2.0\Mosaic.SourceGenerator.dll"
+          Pack="true"
+          PackagePath="analyzers/dotnet/cs"
+          Visible="false" />
+    <None Include="build\Mosaic.targets" Pack="true" PackagePath="build\" />
+  </ItemGroup>
+
+</Project>

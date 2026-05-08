@@ -1,0 +1,24 @@
+﻿{
+  Diagnostics: [
+    {
+      Location: /*
+[JsonSerializable(typeof(OrderPlaced))]
+internal sealed class WebshopJsonContext : JsonSerializerContext
+                      ^^^^^^^^^^^^^^^^^^
+{
+*/
+ : (14,22)-(14,40),
+      Message: Mosaic-attributed JsonSerializerContext 'WebshopJsonContext' has no [JsonSerializable(typeof(Sample.OrderAccepted))]. The AOT-friendly JSON registry will throw at runtime when this event is published or scheduled.,
+      Severity: Warning,
+      WarningLevel: 1,
+      Descriptor: {
+        Id: MOSAIC0006,
+        Title: MosaicJsonContext is missing [JsonSerializable] for an IEvent,
+        MessageFormat: Mosaic-attributed JsonSerializerContext '{0}' has no [JsonSerializable(typeof({1}))]. The AOT-friendly JSON registry will throw at runtime when this event is published or scheduled.,
+        Category: Mosaic,
+        DefaultSeverity: Warning,
+        IsEnabledByDefault: true
+      }
+    }
+  ]
+}
