@@ -28,7 +28,7 @@
     <!-- Single source of truth for the package version. Bump these when cutting a release.
          The split lets a CI build override VersionSuffix for prerelease channels via /p:VersionSuffix=…. -->
     <VersionPrefix>1.0.0</VersionPrefix>
-    <VersionSuffix>rc.1</VersionSuffix>
+    <VersionSuffix>rc.2</VersionSuffix>
   </PropertyGroup>
 
   <PropertyGroup Label="Source-link / debugger experience">
