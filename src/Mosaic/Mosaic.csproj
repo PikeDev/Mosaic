@@ -10,6 +10,9 @@
     <!-- Meta package: no compiled output, only a build/ folder driving the package layout -->
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <NoWarn>$(NoWarn);NU5128</NoWarn>
+    <!-- A symbol package only contains PDBs from the build output. With IncludeBuildOutput=false
+         the .snupkg is empty and nuget.org rejects it with HTTP 400. Override the repo-wide default. -->
+    <IncludeSymbols>false</IncludeSymbols>
   </PropertyGroup>
 
   <ItemGroup>
